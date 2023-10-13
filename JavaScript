@@ -40,7 +40,7 @@ else if (guess < secretNum){
   document.querySelector('.score').textContent = score;
 } 
 
-//If score gets too zero the player loses
+//If score gets to zero the player loses
  if (score == 0){
   document.querySelector('.message').textContent = "You lost😣"
   document.querySelector('.score').textContent = 0
@@ -52,7 +52,7 @@ else if (guess < secretNum){
 
 })
  
-
+//The code returns to normal when the "Again!" button is clicked
 document.querySelector('.again').addEventListener('click', function() {
   secretNum = Math.trunc(Math.random()* 20) + 1
   score = 20
