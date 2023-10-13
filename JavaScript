@@ -1,1 +1,74 @@
 
+//This is the secret number that is between 1 & 20
+let secretNum = Math.trunc(Math.random()* 20) + 1
+let score = 20
+let highScore
+
+//This is the function that logs the number inside the guess class when the
+//check is clicked
+document.querySelector('.check').addEventListener('click', function() {
+  const guess = Number(document.querySelector('.guess').value)
+  console.log(guess, typeof guess);
+
+  
+  //if no number is entered, it will log ⛔️You must add a number
+  if (!guess){
+    document.querySelector('.message').textContent = "⛔️You must add a number"
+  } 
+  //If player wins
+  else if(guess === secretNum) {
+    document.querySelector('.message').textContent = "🎉You got it";
+    document.body.style.backgroundColor = '#60b347';
+    document.querySelector('.highscore').textContent = score;
+    document.querySelector('.number').style.width = '30rem';
+    document.querySelector('.number').textContent = secretNum
+}
+//If player puts a number that is greater than 20 and less than 1
+else if(guess > 20 || guess < 1) {
+  document.querySelector('.message').textContent = "Number must be between 1 & 20";
+} 
+//If player guess is too high
+else if (guess > secretNum){
+  document.querySelector('.message').textContent = "Number is too high📈";
+  score--;
+  document.querySelector('.score').textContent = score;
+} 
+//If player guess is too high
+else if (guess < secretNum){
+  document.querySelector('.message').textContent = "Number is too low📉";
+  score--;
+  document.querySelector('.score').textContent = score;
+} 
+
+//If score gets too zero the player loses
+ if (score == 0){
+  document.querySelector('.message').textContent = "You lost😣"
+  document.querySelector('.score').textContent = 0
+  document.body.style.backgroundColor = '#FD1C03';
+} else if (score < 0){
+  document.querySelector('.message').textContent = "You lost😣"
+  document.querySelector('.score').textContent = 0
+}
+
+})
+ 
+
+document.querySelector('.again').addEventListener('click', function() {
+  secretNum = Math.trunc(Math.random()* 20) + 1
+  score = 20
+  highScore = score
+  document.querySelector('.score').textContent = score;
+  document.body.style.backgroundColor = '#222';
+  document.querySelector('.number').textContent = "?"
+  document.querySelector('.message').textContent = "Start guessing..."
+  document.querySelector('.guess').value = ""
+ if (score > highScore){
+  score = highScore
+  console.log(highScore)
+ }
+ }
+
+)
+
+
+//message
